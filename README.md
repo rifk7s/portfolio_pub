@@ -1,25 +1,11 @@
 
 <!-- Tech Stack Badges -->
-<p align="center">
-  <a href="https://nextjs.org/">
-    <img src="https://img.shields.io/badge/Next.js-14-blue?logo=next.js&logoColor=white&style=flat" alt="Next.js 14" />
-  </a>
-  <a href="https://react.dev/">
-    <img src="https://img.shields.io/badge/React-18-61dafb?logo=react&logoColor=white&style=flat" alt="React" />
-  </a>
-  <a href="https://www.typescriptlang.org/">
-    <img src="https://img.shields.io/badge/TypeScript-5.0-3178c6?logo=typescript&logoColor=white&style=flat" alt="TypeScript" />
-  </a>
-  <a href="https://tailwindcss.com/">
-    <img src="https://img.shields.io/badge/TailwindCSS-3.4-38bdf8?logo=tailwindcss&logoColor=white&style=flat" alt="TailwindCSS" />
-  </a>
-  <a href="https://ui.shadcn.com/">
-    <img src="https://img.shields.io/badge/Shadcn_UI-%20-111827?logo=vercel&logoColor=white&style=flat" alt="Shadcn UI" />
-  </a>
-  <a href="https://magicui.design/">
-    <img src="https://img.shields.io/badge/Magic_UI-%20-7c3aed?logo=magic&logoColor=white&style=flat" alt="Magic UI" />
-  </a>
-</p>
+[![Next.js](https://img.shields.io/badge/Next.js-00000F?style=flat&logo=next.js&logoColor=white)](https://nextjs.org)
+[![React](https://img.shields.io/badge/React-18-61dafb?style=flat&logo=react&logoColor=white)](https://react.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-06B6D4?style=flat&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
+[![Shadcn UI](https://img.shields.io/badge/Shadcn_UI-111827?style=flat&logo=vercel&logoColor=white)](https://ui.shadcn.com)
+[![Magic UI](https://img.shields.io/badge/Magic_UI-7c3aed?style=flat&logo=magic&logoColor=white)](https://magicui.design)
 
 # Portfolio (Public Version)
 
