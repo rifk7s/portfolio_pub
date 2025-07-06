@@ -1,0 +1,182 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+      --background: 0 0% 100%; /* HSL */
+      --foreground: 210 11.1% 3.53%;
+
+      --card: 0 0% 100%;
+      --card-foreground: 210 11.1% 3.53%;
+
+      --popover: 0 0% 100%;
+      --popover-foreground: 210 11.1% 3.53%;
+
+      --primary: 0 0% 9%;
+      --primary-foreground: 0 0% 98%;
+
+      --secondary: 0 0% 96.1%;
+      --secondary-foreground: 0 0% 9%;
+
+      --muted: 0 0% 90%;
+      --muted-foreground: 0 0% 35%;
+
+      --accent: 0 0% 90%;
+      --accent-foreground: 0 0% 9%;
+
+      --destructive: 0 84.2% 60.2%;
+      --destructive-foreground: 0 0% 98%;
+
+      --border: 0 0% 80%;
+      --input: 0 0% 89.8%;
+      --ring: 0 0% 3.9%;
+
+      --radius: 0.5rem;
+    }
+
+    .dark {
+      --background: 210 11.1% 3.53%;
+      --foreground: 0 0% 98%;
+
+      --card: 210 11.1% 3.53%;
+      --card-foreground: 0 0% 98%;
+
+      --popover: 210 11.1% 3.53%;
+      --popover-foreground: 0 0% 98%;
+
+      --primary: 0 0% 98%;
+      --primary-foreground: 0 0% 9%;
+
+      --secondary: 0 0% 14.9%;
+      --secondary-foreground: 0 0% 98%;
+
+      --muted: 0 0% 15%;
+      --muted-foreground: 0 0% 65%;
+
+      --accent: 0 0% 15%;
+      --accent-foreground: 0 0% 98%;
+
+      --destructive: 0 62.8% 30.6%;
+      --destructive-foreground: 0 0% 98%;
+
+      --border: 0 0% 20%;
+      --input: 0 0% 14.9%;
+      --ring: 0 0% 83.1%;
+    }
+  }
+
+  @layer base {
+    * {
+      @apply border-border;
+    }
+    body {
+      @apply bg-background text-foreground;
+    }
+  }
+
+  h3 code {
+    @apply !text-lg md:!text-xl;
+  }
+  
+  pre {
+    @apply !px-0 rounded-lg overflow-x-auto py-4
+  }
+   
+  pre [data-line] {
+    @apply px-4
+  }
+
+  code {
+    @apply text-sm md:text-base !leading-loose;
+  }
+  
+  pre > code {
+    counter-reset: line;
+  }
+  
+  code[data-theme*=" "],
+  code[data-theme*=" "] span {
+    color: var(--shiki-light);
+    background-color: var(--shiki-light-bg);
+  }
+   
+  @media (prefers-color-scheme: dark) {
+    code[data-theme*=" "],
+    code[data-theme*=" "] span {
+      color: var(--shiki-dark);
+      background-color: var(--shiki-dark-bg);
+    }
+  }
+  
+  code[data-line-numbers] {
+    counter-reset: line;
+  }
+  
+  code[data-line-numbers] > [data-line]::before {
+    counter-increment: line;
+    content: counter(line);
+    @apply inline-block w-4 mr-4 text-right text-gray-500;
+  }
+ 
+  code {
+    counter-reset: line;
+  }
+ 
+  code > [data-line]::before {
+  counter-increment: line;
+  content: counter(line);
+ 
+  /* Other styling */
+  display: inline-block;
+  width: 1rem;
+  margin-right: 2rem;
+  text-align: right;
+  color: gray;
+}
+ 
+code[data-line-numbers-max-digits="2"] > [data-line]::before {
+  width: 2rem;
+}
+ 
+code[data-line-numbers-max-digits="3"] > [data-line]::before {
+  width: 3rem;
+}
+
+/* Custom enhancements for dark theme */
+
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Better focus states */
+*:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+}
+
+/* Navigation button styles */
+.nav-button {
+  background-color: hsl(var(--muted));
+  border: 1px solid hsl(var(--border));
+  color: hsl(var(--muted-foreground));
+  transition: all 0.2s ease-in-out;
+}
+
+.nav-button:hover {
+  background-color: hsl(var(--accent));
+  border-color: hsl(var(--accent-foreground) / 0.2);
+  color: hsl(var(--accent-foreground));
+}
+
+/* Improved card hover effects */
+.card-hover {
+  transition: all 0.2s ease-in-out;
+}
+
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+}
