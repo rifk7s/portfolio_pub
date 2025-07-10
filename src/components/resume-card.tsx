@@ -62,7 +62,7 @@ export const ResumeCard = ({
                 {title}
                 {badges && (
                   <span className="inline-flex gap-x-1">
-                    {badges.map((badge, index) => (
+                    {badges.map((badge, _index) => (
                       <Badge
                         className="align-middle text-xs"
                         key={badge}
