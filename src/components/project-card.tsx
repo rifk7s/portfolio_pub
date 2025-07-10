@@ -129,7 +129,7 @@ export function ProjectCard({
         <CardFooter className="px-2 pb-2">
           {links && links.length > 0 && (
             <div className="flex flex-row flex-wrap items-start gap-1">
-              {links?.map((link, idx) => (
+              {links?.map((link, _idx) => (
                 <Link
                   href={link?.href}
                   key={`${link.type}-${link.href}`}

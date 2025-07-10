@@ -31,7 +31,7 @@ export default function ContactPage() {
           <BlurFade delay={BLUR_FADE_DELAY * 2}>
             <div className="grid grid-cols-4 gap-4">
               {Object.entries(DATA.contact.social).map(
-                ([platform, social], id) => (
+                ([platform, social], _id) => (
                   <Link
                     className="flex flex-col items-center justify-center gap-3 rounded-lg border border-border/50 bg-secondary/30 p-8 transition-all duration-300 hover:border-border/80 hover:bg-secondary/80 hover:shadow-lg"
                     href={social.url}
