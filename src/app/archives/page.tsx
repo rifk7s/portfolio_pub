@@ -1,11 +1,11 @@
-import BlurFade from "@/components/magicui/blur-fade";
-import { ChevronLeftIcon } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
+import { ChevronLeftIcon } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import BlurFade from '@/components/magicui/blur-fade';
 
 export const metadata = {
-  title: "Archives",
-  description: "A collection of categories and memories.",
+  title: 'Archives',
+  description: 'A collection of categories and memories.',
 };
 
 const BLUR_FADE_DELAY = 0.04;
@@ -13,73 +13,73 @@ const BLUR_FADE_DELAY = 0.04;
 export default function ArchivesPage() {
   const categories = [
     {
-      name: "gallery",
-      href: "/archives/gallery",
+      name: 'gallery',
+      href: '/archives/gallery',
     },
     {
-      name: "projects", 
-      href: "/archives/projects",
+      name: 'projects',
+      href: '/archives/projects',
     },
     {
-      name: "gaming",
-      href: "/archives/gaming", 
+      name: 'gaming',
+      href: '/archives/gaming',
     },
     {
-      name: "tools",
-      href: "/archives/tools",
+      name: 'tools',
+      href: '/archives/tools',
     },
     {
-      name: "misc",
-      href: "/archives/misc",
+      name: 'misc',
+      href: '/archives/misc',
     },
   ];
 
   return (
-    <main className="flex flex-col min-h-[100dvh] space-y-16">
+    <main className="flex min-h-[100dvh] flex-col space-y-16">
       <section>
         <div className="mx-auto w-full max-w-4xl space-y-8">
           <BlurFade delay={BLUR_FADE_DELAY}>
             <div className="flex items-center gap-4">
-              <Link 
+              <Link
+                className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-muted transition-colors hover:bg-muted/50"
                 href="/"
-                className="inline-flex items-center justify-center w-8 h-8 rounded-full border border-muted hover:bg-muted/50 transition-colors"
               >
-                <ChevronLeftIcon className="w-4 h-4" />
+                <ChevronLeftIcon className="h-4 w-4" />
               </Link>
-              <h1 className="text-3xl font-bold tracking-tight">Archives</h1>
+              <h1 className="font-bold text-3xl tracking-tight">Archives</h1>
             </div>
           </BlurFade>
         </div>
       </section>
-      
+
       <section>
         <div className="mx-auto w-full max-w-4xl px-4">
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 justify-items-center">
+          <div className="grid grid-cols-2 justify-items-center gap-8 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
             {categories.map((category, id) => (
-              <BlurFade key={category.name} delay={BLUR_FADE_DELAY * 2 + id * 0.1}>
-                <Link 
-                  href={category.href}
-                  className="group block text-center"
-                >
-                  <div className="w-16 h-16 relative mb-3 mx-auto">
+              <BlurFade
+                delay={BLUR_FADE_DELAY * 2 + id * 0.1}
+                key={category.name}
+              >
+                <Link className="group block text-center" href={category.href}>
+                  <div className="relative mx-auto mb-3 h-16 w-16">
                     {/* Light theme folder */}
                     <Image
-                      src="/black-folder.webp"
                       alt={category.name}
+                      className="object-contain transition-transform duration-300 group-hover:scale-105 dark:hidden"
                       fill
-                      className="object-contain group-hover:scale-105 transition-transform duration-300 dark:hidden"
                       sizes="64px"
+                      src="/black-folder.webp"
                     />
                     {/* Dark theme folder */}
                     <Image
-                      src="/white-folder.webp"
                       alt={category.name}
+                      className="hidden object-contain transition-transform duration-300 group-hover:scale-105 dark:block"
                       fill
-                      className="object-contain group-hover:scale-105 transition-transform duration-300 hidden dark:block"
                       sizes="64px"
+                      src="/white-folder.webp"
                     />
                   </div>
-                  <p className="text-center text-sm font-medium">
+                  <p className="text-center font-medium text-sm">
                     {category.name}
                   </p>
                 </Link>

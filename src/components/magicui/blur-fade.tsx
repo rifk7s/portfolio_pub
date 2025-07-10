@@ -1,7 +1,12 @@
-"use client";
+'use client';
 
-import { AnimatePresence, motion, useInView, Variants } from "motion/react";
-import { useRef } from "react";
+import {
+  AnimatePresence,
+  motion,
+  useInView,
+  type Variants,
+} from 'motion/react';
+import { useRef } from 'react';
 
 interface BlurFadeProps {
   children: React.ReactNode;
@@ -25,31 +30,34 @@ const BlurFade = ({
   delay = 0,
   yOffset = 6,
   inView = false,
-  inViewMargin = "-50px",
-  blur = "6px",
+  inViewMargin = '-50px',
+  blur = '6px',
 }: BlurFadeProps) => {
   const ref = useRef(null);
-  const inViewResult = useInView(ref, { once: true, margin: inViewMargin as any });
+  const inViewResult = useInView(ref, {
+    once: true,
+    margin: inViewMargin as any,
+  });
   const isInView = !inView || inViewResult;
   const defaultVariants: Variants = {
     hidden: { y: yOffset, opacity: 0, filter: `blur(${blur})` },
-    visible: { y: -yOffset, opacity: 1, filter: `blur(0px)` },
+    visible: { y: -yOffset, opacity: 1, filter: 'blur(0px)' },
   };
   const combinedVariants = variant || defaultVariants;
   return (
     <AnimatePresence>
       <motion.div
-        ref={ref}
-        initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
+        animate={isInView ? 'visible' : 'hidden'}
+        className={className}
         exit="hidden"
-        variants={combinedVariants}
+        initial="hidden"
+        ref={ref}
         transition={{
           delay: 0.04 + delay,
           duration,
-          ease: "easeOut",
+          ease: 'easeOut',
         }}
-        className={className}
+        variants={combinedVariants}
       >
         {children}
       </motion.div>

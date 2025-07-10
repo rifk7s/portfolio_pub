@@ -1,12 +1,12 @@
-import { getBlogPosts, getPost } from "@/data/blog";
-import { DATA } from "@/data/resume";
-import { formatDate } from "@/lib/utils";
-import type { Metadata } from "next";
-import { notFound } from "next/navigation";
-import { Suspense } from "react";
-import BlurFade from "@/components/magicui/blur-fade";
-import Link from "next/link";
-import { ChevronLeftIcon } from "lucide-react";
+import { ChevronLeftIcon } from 'lucide-react';
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import { Suspense } from 'react';
+import BlurFade from '@/components/magicui/blur-fade';
+import { getBlogPosts, getPost } from '@/data/blog';
+import { DATA } from '@/data/resume';
+import { formatDate } from '@/lib/utils';
 
 const BLUR_FADE_DELAY = 0.04;
 
@@ -23,15 +23,17 @@ export async function generateMetadata({
   }>;
 }): Promise<Metadata | undefined> {
   const resolvedParams = await params;
-  let post = await getPost(resolvedParams.slug);
+  const post = await getPost(resolvedParams.slug);
 
-  let {
+  const {
     title,
     publishedAt: publishedTime,
     summary: description,
     image,
   } = post.metadata;
-  let ogImage = image ? `${DATA.url}${image}` : `${DATA.url}/og?title=${title}`;
+  const ogImage = image
+    ? `${DATA.url}${image}`
+    : `${DATA.url}/og?title=${title}`;
 
   return {
     title,
@@ -39,7 +41,7 @@ export async function generateMetadata({
     openGraph: {
       title,
       description,
-      type: "article",
+      type: 'article',
       publishedTime,
       url: `${DATA.url}/blog/${post.slug}`,
       images: [
@@ -49,7 +51,7 @@ export async function generateMetadata({
       ],
     },
     twitter: {
-      card: "summary_large_image",
+      card: 'summary_large_image',
       title,
       description,
       images: [ogImage],
@@ -65,33 +67,33 @@ export default async function Blog({
   }>;
 }) {
   const resolvedParams = await params;
-  let post = await getPost(resolvedParams.slug);
+  const post = await getPost(resolvedParams.slug);
 
   if (!post) {
     notFound();
   }
 
   return (
-    <main className="flex flex-col min-h-[100dvh] space-y-10">
+    <main className="flex min-h-[100dvh] flex-col space-y-10">
       <section>
         <div className="mx-auto w-full max-w-4xl space-y-8">
           <BlurFade delay={BLUR_FADE_DELAY}>
             <div className="flex items-center gap-4">
-              <Link 
+              <Link
+                className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-muted transition-colors hover:bg-muted/50"
                 href="/blog"
-                className="inline-flex items-center justify-center w-8 h-8 rounded-full border border-muted hover:bg-muted/50 transition-colors"
               >
-                <ChevronLeftIcon className="w-4 h-4" />
+                <ChevronLeftIcon className="h-4 w-4" />
               </Link>
-              <h1 className="text-3xl font-bold tracking-tight">
+              <h1 className="font-bold text-3xl tracking-tight">
                 {post.metadata.title}
               </h1>
             </div>
           </BlurFade>
           <BlurFade delay={BLUR_FADE_DELAY * 2}>
-            <div className="flex justify-between items-center text-sm">
+            <div className="flex items-center justify-between text-sm">
               <Suspense fallback={<p className="h-5" />}>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-muted-foreground text-sm">
                   {formatDate(post.metadata.publishedAt)} (2mo ago)
                 </p>
               </Suspense>
@@ -106,18 +108,16 @@ export default async function Blog({
             <article
               className="prose dark:prose-invert max-w-none"
               dangerouslySetInnerHTML={{ __html: post.source }}
-            ></article>
+            />
           </BlurFade>
         </div>
       </section>
 
       <script
-        type="application/ld+json"
-        suppressHydrationWarning
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BlogPosting",
+            '@context': 'https://schema.org',
+            '@type': 'BlogPosting',
             headline: post.metadata.title,
             datePublished: post.metadata.publishedAt,
             dateModified: post.metadata.publishedAt,
@@ -127,11 +127,13 @@ export default async function Blog({
               : `${DATA.url}/og?title=${post.metadata.title}`,
             url: `${DATA.url}/blog/${post.slug}`,
             author: {
-              "@type": "Person",
+              '@type': 'Person',
               name: DATA.name,
             },
           }),
         }}
+        suppressHydrationWarning
+        type="application/ld+json"
       />
     </main>
   );
