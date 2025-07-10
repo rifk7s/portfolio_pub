@@ -31,6 +31,32 @@ interface Props {
   readonly className?: string;
 }
 
+// Move any inline JSX or components outside the parent component
+const BadgeComponent = ({ tag, index }: { tag: string; index: number }) => (
+  <motion.div
+    animate={{ opacity: 1, scale: 1 }}
+    initial={{ opacity: 0, scale: 0.8 }}
+    key={tag}
+    transition={{
+      delay: index * 0.05,
+      duration: 0.2,
+    }}
+  >
+    <Badge className="px-1 py-0 text-[10px]" variant="secondary">
+      {tag}
+    </Badge>
+  </motion.div>
+);
+
+const MarkdownParagraph = (
+  props: React.HTMLAttributes<HTMLParagraphElement>
+) => (
+  <p
+    {...props}
+    className="prose dark:prose-invert max-w-full text-pretty font-sans text-muted-foreground text-xs"
+  />
+);
+
 export function ProjectCard({
   title,
   href,
@@ -75,7 +101,7 @@ export function ProjectCard({
               loop
               muted
               playsInline
-              src={video} // needed because random black line at bottom of video
+              src={video}
             />
           )}
           {image && (
@@ -89,7 +115,7 @@ export function ProjectCard({
               />
             </div>
           )}
-        </Link>{' '}
+        </Link>
         <CardHeader className="flex-grow px-2">
           <div className="space-y-1">
             <CardTitle className="mt-1 text-base">{title}</CardTitle>
@@ -100,7 +126,11 @@ export function ProjectCard({
                 .replace('www.', '')
                 .replace('/', '')}
             </div>
-            <Markdown className="prose dark:prose-invert max-w-full text-pretty font-sans text-muted-foreground text-xs">
+            <Markdown
+              components={{
+                p: MarkdownParagraph,
+              }}
+            >
               {description}
             </Markdown>
           </div>
@@ -109,19 +139,7 @@ export function ProjectCard({
           {tags && tags.length > 0 && (
             <div className="mt-2 flex flex-wrap gap-1">
               {tags?.map((tag, index) => (
-                <motion.div
-                  animate={{ opacity: 1, scale: 1 }}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  key={tag}
-                  transition={{
-                    delay: index * 0.05,
-                    duration: 0.2,
-                  }}
-                >
-                  <Badge className="px-1 py-0 text-[10px]" variant="secondary">
-                    {tag}
-                  </Badge>
-                </motion.div>
+                <BadgeComponent index={index} key={tag} tag={tag} />
               ))}
             </div>
           )}
@@ -129,15 +147,15 @@ export function ProjectCard({
         <CardFooter className="px-2 pb-2">
           {links && links.length > 0 && (
             <div className="flex flex-row flex-wrap items-start gap-1">
-              {links?.map((link, _idx) => (
+              {links?.map((linkItem, _idx) => (
                 <Link
-                  href={link?.href}
-                  key={`${link.type}-${link.href}`}
+                  href={linkItem?.href}
+                  key={`${linkItem.type}-${linkItem.href}`}
                   target="_blank"
                 >
                   <Badge className="flex gap-2 px-2 py-1 text-[10px]">
-                    {link.icon}
-                    {link.type}
+                    {linkItem.icon}
+                    {linkItem.type}
                   </Badge>
                 </Link>
               ))}
