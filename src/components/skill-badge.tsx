@@ -65,7 +65,12 @@ export function SkillBadge({ skill, className }: SkillBadgeProps) {
   const IconComponent = skillIcons[skill];
 
   return (
-    <div className={cn(skillBadgeVariants({ variant: 'outline-solid' }), className)}>
+    <div
+      className={cn(
+        skillBadgeVariants({ variant: 'outline-solid' }),
+        className
+      )}
+    >
       {IconComponent && <IconComponent className="size-4" />}
       <span className="font-medium text-sm">{skill}</span>
     </div>
