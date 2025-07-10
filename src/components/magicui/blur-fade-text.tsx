@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { cn } from "@/lib/utils";
-import { AnimatePresence, motion, Variants } from "motion/react";
-import { useMemo } from "react";
+import { AnimatePresence, motion, type Variants } from 'motion/react';
+import { useMemo } from 'react';
+import { cn } from '@/lib/utils';
 
 interface BlurFadeTextProps {
   text: string;
@@ -27,8 +27,8 @@ const BlurFadeText = ({
   animateByCharacter = false,
 }: BlurFadeTextProps) => {
   const defaultVariants: Variants = {
-    hidden: { y: yOffset, opacity: 0, filter: "blur(8px)" },
-    visible: { y: -yOffset, opacity: 1, filter: "blur(0px)" },
+    hidden: { y: yOffset, opacity: 0, filter: 'blur(8px)' },
+    visible: { y: -yOffset, opacity: 1, filter: 'blur(0px)' },
   };
   const combinedVariants = variant || defaultVariants;
   const characters = useMemo(() => Array.from(text), [text]);
@@ -39,17 +39,17 @@ const BlurFadeText = ({
         <AnimatePresence>
           {characters.map((char, i) => (
             <motion.span
-              key={i}
-              initial="hidden"
               animate="visible"
+              className={cn('inline-block', className)}
               exit="hidden"
-              variants={combinedVariants}
+              initial="hidden"
+              key={i}
+              style={{ width: char.trim() === '' ? '0.2em' : 'auto' }}
               transition={{
                 delay: delay + i * characterDelay,
-                ease: "easeOut",
+                ease: 'easeOut',
               }}
-              className={cn("inline-block", className)}
-              style={{ width: char.trim() === "" ? "0.2em" : "auto" }}
+              variants={combinedVariants}
             >
               {char}
             </motion.span>
@@ -63,15 +63,15 @@ const BlurFadeText = ({
     <div className="flex">
       <AnimatePresence>
         <motion.span
-          initial="hidden"
           animate="visible"
+          className={cn('inline-block', className)}
           exit="hidden"
-          variants={combinedVariants}
+          initial="hidden"
           transition={{
             delay,
-            ease: "easeOut",
+            ease: 'easeOut',
           }}
-          className={cn("inline-block", className)}
+          variants={combinedVariants}
         >
           {text}
         </motion.span>

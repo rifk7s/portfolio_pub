@@ -1,18 +1,18 @@
-"use client";
+'use client';
 
-import { Badge } from "@/components/ui/badge";
+import { motion } from 'motion/react';
+import Image from 'next/image';
+import Link from 'next/link';
+import Markdown from 'react-markdown';
+import { Badge } from '@/components/ui/badge';
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { cn } from "@/lib/utils";
-import { motion } from "motion/react";
-import Image from "next/image";
-import Link from "next/link";
-import Markdown from "react-markdown";
+} from '@/components/ui/card';
+import { cn } from '@/lib/utils';
 
 interface Props {
   readonly title: string;
@@ -45,58 +45,62 @@ export function ProjectCard({
 }: Props) {
   return (
     <motion.div
-      whileHover={{ 
+      className="h-full"
+      transition={{
+        type: 'spring',
+        stiffness: 300,
+        damping: 30,
+      }}
+      whileHover={{
         scale: 1.03,
         y: -8,
       }}
-      whileTap={{ 
+      whileTap={{
         scale: 0.97,
       }}
-      transition={{
-        type: "spring",
-        stiffness: 300,
-        damping: 30
-      }}
-      className="h-full"
     >
       <Card
         className={
-          "flex flex-col overflow-hidden border hover:shadow-lg transition-all duration-300 ease-out h-full"
+          'flex h-full flex-col overflow-hidden border transition-all duration-300 ease-out hover:shadow-lg'
         }
       >
         <Link
-          href={href ?? "#"}
-          className={cn("block cursor-pointer", className)}
+          className={cn('block cursor-pointer', className)}
+          href={href ?? '#'}
         >
           {video && (
             <video
-              src={video}
               autoPlay
+              className="pointer-events-none mx-auto h-40 w-full object-cover object-top"
               loop
               muted
               playsInline
-              className="pointer-events-none mx-auto h-40 w-full object-cover object-top" // needed because random black line at bottom of video
+              src={video} // needed because random black line at bottom of video
             />
           )}
           {image && (
-            <div className="overflow-hidden h-40">
+            <div className="h-40 overflow-hidden">
               <Image
-                src={image}
                 alt={title}
-                width={500}
-                height={300}
                 className="pointer-events-auto h-40 w-full object-cover object-top"
+                height={300}
+                src={image}
+                width={500}
               />
             </div>
           )}
-        </Link>        <CardHeader className="px-2 flex-grow">
+        </Link>{' '}
+        <CardHeader className="flex-grow px-2">
           <div className="space-y-1">
             <CardTitle className="mt-1 text-base">{title}</CardTitle>
             <time className="font-sans text-xs">{dates}</time>
             <div className="hidden font-sans text-xs underline print:visible">
-              {link?.replace("https://", "").replace("www.", "").replace("/", "")}
+              {link
+                ?.replace('https://', '')
+                .replace('www.', '')
+                .replace('/', '')}
             </div>
-            <Markdown className="prose max-w-full text-pretty font-sans text-xs text-muted-foreground dark:prose-invert">
+            <Markdown className="prose dark:prose-invert max-w-full text-pretty font-sans text-muted-foreground text-xs">
               {description}
             </Markdown>
           </div>
@@ -106,18 +110,15 @@ export function ProjectCard({
             <div className="mt-2 flex flex-wrap gap-1">
               {tags?.map((tag, index) => (
                 <motion.div
-                  key={tag}
-                  initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{ 
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  key={tag}
+                  transition={{
                     delay: index * 0.05,
-                    duration: 0.2 
+                    duration: 0.2,
                   }}
                 >
-                  <Badge
-                    className="px-1 py-0 text-[10px]"
-                    variant="secondary"
-                  >
+                  <Badge className="px-1 py-0 text-[10px]" variant="secondary">
                     {tag}
                   </Badge>
                 </motion.div>
@@ -125,21 +126,25 @@ export function ProjectCard({
             </div>
           )}
         </CardContent>
-      <CardFooter className="px-2 pb-2">
-        {links && links.length > 0 && (
-          <div className="flex flex-row flex-wrap items-start gap-1">
-            {links?.map((link, idx) => (
-              <Link href={link?.href} key={`${link.type}-${link.href}`} target="_blank">
-                <Badge className="flex gap-2 px-2 py-1 text-[10px]">
-                  {link.icon}
-                  {link.type}
-                </Badge>
-              </Link>
-            ))}
-          </div>
-        )}
-      </CardFooter>
-    </Card>
+        <CardFooter className="px-2 pb-2">
+          {links && links.length > 0 && (
+            <div className="flex flex-row flex-wrap items-start gap-1">
+              {links?.map((link, idx) => (
+                <Link
+                  href={link?.href}
+                  key={`${link.type}-${link.href}`}
+                  target="_blank"
+                >
+                  <Badge className="flex gap-2 px-2 py-1 text-[10px]">
+                    {link.icon}
+                    {link.type}
+                  </Badge>
+                </Link>
+              ))}
+            </div>
+          )}
+        </CardFooter>
+      </Card>
     </motion.div>
   );
 }

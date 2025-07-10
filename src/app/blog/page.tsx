@@ -1,12 +1,12 @@
-import BlurFade from "@/components/magicui/blur-fade";
-import { getBlogPosts } from "@/data/blog";
-import Link from "next/link";
-import { ChevronLeftIcon } from "lucide-react";
-import { BlogCard } from "@/components/blog-card";
+import { ChevronLeftIcon } from 'lucide-react';
+import Link from 'next/link';
+import { BlogCard } from '@/components/blog-card';
+import BlurFade from '@/components/magicui/blur-fade';
+import { getBlogPosts } from '@/data/blog';
 
 export const metadata = {
-  title: "Blog",
-  description: "My thoughts on software development, life, and more.",
+  title: 'Blog',
+  description: 'My thoughts on software development, life, and more.',
 };
 
 const BLUR_FADE_DELAY = 0.04;
@@ -15,18 +15,18 @@ export default async function BlogPage() {
   const posts = await getBlogPosts();
 
   return (
-    <main className="flex flex-col min-h-[100dvh] space-y-10">
+    <main className="flex min-h-[100dvh] flex-col space-y-10">
       <section>
         <div className="mx-auto w-full max-w-4xl space-y-8">
           <BlurFade delay={BLUR_FADE_DELAY}>
             <div className="flex items-center gap-4">
-              <Link 
+              <Link
+                className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-muted transition-colors hover:bg-muted/50"
                 href="/"
-                className="inline-flex items-center justify-center w-8 h-8 rounded-full border border-muted hover:bg-muted/50 transition-colors"
               >
-                <ChevronLeftIcon className="w-4 h-4" />
+                <ChevronLeftIcon className="h-4 w-4" />
               </Link>
-              <h1 className="text-3xl font-bold tracking-tight">Blogs</h1>
+              <h1 className="font-bold text-3xl tracking-tight">Blogs</h1>
             </div>
           </BlurFade>
         </div>
@@ -36,7 +36,10 @@ export default async function BlogPage() {
         <div className="mx-auto w-full max-w-4xl space-y-4">
           {posts
             .toSorted((a, b) => {
-              if (new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)) {
+              if (
+                new Date(a.metadata.publishedAt) >
+                new Date(b.metadata.publishedAt)
+              ) {
                 return -1;
               }
               return 1;

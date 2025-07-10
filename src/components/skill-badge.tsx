@@ -1,7 +1,6 @@
-import { cn } from "@/lib/utils";
-import { cva } from "class-variance-authority";
-import React from "react";
-import { FaGitAlt } from "react-icons/fa";
+import { cva } from 'class-variance-authority';
+import type React from 'react';
+import { FaGitAlt } from 'react-icons/fa';
 import {
   SiCss3,
   SiExpress,
@@ -17,7 +16,8 @@ import {
   SiReact,
   SiTailwindcss,
   SiTypescript,
-} from "react-icons/si";
+} from 'react-icons/si';
+import { cn } from '@/lib/utils';
 
 interface SkillBadgeProps {
   readonly skill: string;
@@ -25,36 +25,39 @@ interface SkillBadgeProps {
 }
 
 const skillBadgeVariants = cva(
-  "flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 italic",
+  'flex items-center gap-2 rounded-lg px-4 py-2 font-medium text-sm italic transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2',
   {
     variants: {
       variant: {
         default:
-          "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        outline: "border bg-muted text-muted-foreground hover:bg-muted/80",
+          'border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80',
+        outline: 'border bg-muted text-muted-foreground hover:bg-muted/80',
       },
     },
     defaultVariants: {
-      variant: "default",
+      variant: 'default',
     },
-  },
+  }
 );
 
-const skillIcons: Record<string, React.ComponentType<{ className?: string }>> = {
+const skillIcons: Record<
+  string,
+  React.ComponentType<{ className?: string }>
+> = {
   HTML: SiHtml5,
   CSS: SiCss3,
   TypeScript: SiTypescript,
-  "Node.js": SiNodedotjs,
+  'Node.js': SiNodedotjs,
   Python: SiPython,
   MySQL: SiMysql,
   Git: FaGitAlt,
   JavaScript: SiJavascript,
   Java: SiOpenjdk,
-  "Next.js": SiNextdotjs,
+  'Next.js': SiNextdotjs,
   React: SiReact,
-  "Tailwind CSS": SiTailwindcss,
+  'Tailwind CSS': SiTailwindcss,
   GitHub: SiGithub,
-  "Express.js": SiExpress,
+  'Express.js': SiExpress,
   MongoDB: SiMongodb,
 };
 
@@ -62,9 +65,9 @@ export function SkillBadge({ skill, className }: SkillBadgeProps) {
   const IconComponent = skillIcons[skill];
 
   return (
-    <div className={cn(skillBadgeVariants({ variant: "outline" }), className)}>
+    <div className={cn(skillBadgeVariants({ variant: 'outline' }), className)}>
       {IconComponent && <IconComponent className="size-4" />}
-      <span className="text-sm font-medium">{skill}</span>
+      <span className="font-medium text-sm">{skill}</span>
     </div>
   );
 }

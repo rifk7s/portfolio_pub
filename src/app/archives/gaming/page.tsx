@@ -1,31 +1,31 @@
-import BlurFade from "@/components/magicui/blur-fade";
-import Link from "next/link";
-import { ChevronLeftIcon } from "lucide-react";
+import { ChevronLeftIcon } from 'lucide-react';
+import Link from 'next/link';
+import BlurFade from '@/components/magicui/blur-fade';
 
 const BLUR_FADE_DELAY = 0.04;
 
 export default function GamingArchivePage() {
   return (
-    <main className="flex flex-col min-h-[100dvh] space-y-10">
+    <main className="flex min-h-[100dvh] flex-col space-y-10">
       <section>
         <div className="mx-auto w-full max-w-4xl space-y-8">
           <BlurFade delay={BLUR_FADE_DELAY}>
             <div className="flex items-center gap-4">
-              <Link 
+              <Link
+                className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-muted transition-colors hover:bg-muted/50"
                 href="/archives"
-                className="inline-flex items-center justify-center w-8 h-8 rounded-full border border-muted hover:bg-muted/50 transition-colors"
               >
-                <ChevronLeftIcon className="w-4 h-4" />
+                <ChevronLeftIcon className="h-4 w-4" />
               </Link>
-              <h1 className="text-3xl font-bold tracking-tight">Gaming</h1>
+              <h1 className="font-bold text-3xl tracking-tight">Gaming</h1>
             </div>
           </BlurFade>
         </div>
       </section>
-      
+
       <section>
         <div className="mx-auto w-full max-w-4xl">
-          <div className="text-center py-16">
+          <div className="py-16 text-center">
             <p className="text-muted-foreground">
               Coming soon... Game development and gaming content will be here.
             </p>
@@ -37,6 +37,6 @@ export default function GamingArchivePage() {
 }
 
 export const metadata = {
-  title: "Gaming - Archives",
-  description: "Game development and gaming content.",
+  title: 'Gaming - Archives',
+  description: 'Game development and gaming content.',
 };
