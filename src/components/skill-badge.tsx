@@ -25,7 +25,7 @@ interface SkillBadgeProps {
 }
 
 const skillBadgeVariants = cva(
-  'flex items-center gap-2 rounded-lg px-4 py-2 font-medium text-sm italic transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2',
+  'flex items-center gap-2 rounded-lg px-4 py-2 font-medium text-sm italic transition-colors focus:outline-hidden focus:ring-2 focus:ring-ring focus:ring-offset-2',
   {
     variants: {
       variant: {
@@ -65,7 +65,7 @@ export function SkillBadge({ skill, className }: SkillBadgeProps) {
   const IconComponent = skillIcons[skill];
 
   return (
-    <div className={cn(skillBadgeVariants({ variant: 'outline' }), className)}>
+    <div className={cn(skillBadgeVariants({ variant: 'outline-solid' }), className)}>
       {IconComponent && <IconComponent className="size-4" />}
       <span className="font-medium text-sm">{skill}</span>
     </div>

@@ -116,7 +116,7 @@ export function ProjectCard({
             </div>
           )}
         </Link>
-        <CardHeader className="flex-grow px-2">
+        <CardHeader className="grow px-2">
           <div className="space-y-1">
             <CardTitle className="mt-1 text-base">{title}</CardTitle>
             <time className="font-sans text-xs">{dates}</time>
