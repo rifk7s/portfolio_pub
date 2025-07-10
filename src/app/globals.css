@@ -119,14 +119,10 @@ pre {
     @apply inline-block w-4 mr-4 text-right text-gray-500;
   }
  
-  code {
-    counter-reset: line;
-  }
- 
   code > [data-line]::before {
   counter-increment: line;
   content: counter(line);
- 
+
   /* Other styling */
   display: inline-block;
   width: 1rem;
