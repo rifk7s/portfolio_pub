@@ -15,7 +15,7 @@ export default async function BlogPage() {
   const posts = await getBlogPosts();
 
   return (
-    <main className="flex min-h-[100dvh] flex-col space-y-10">
+    <main className="flex min-h-dvh flex-col space-y-10">
       <section>
         <div className="mx-auto w-full max-w-4xl space-y-8">
           <BlurFade delay={BLUR_FADE_DELAY}>

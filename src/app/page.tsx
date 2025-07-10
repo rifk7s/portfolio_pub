@@ -16,7 +16,7 @@ export default async function Page() {
   const posts = await getBlogPosts();
 
   return (
-    <main className="flex min-h-[100dvh] flex-col space-y-16">
+    <main className="flex min-h-dvh flex-col space-y-16">
       <section id="hero">
         <div className="mx-auto w-full max-w-2xl space-y-8">
           <div className="flex items-start justify-between">
