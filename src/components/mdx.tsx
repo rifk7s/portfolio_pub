@@ -2,17 +2,20 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
-function Table({ data }: { data: { headers: string[]; rows: string[][] } }) {
-  const headers = data.headers.map((header, index) => (
-    <th key={index}>{header}</th>
-  ));
-  const rows = data.rows.map((row, index) => (
-    <tr key={index}>
-      {row.map((cell, cellIndex) => (
-        <td key={cellIndex}>{cell}</td>
-      ))}
-    </tr>
-  ));
+function Table({
+  data,
+}: Readonly<{ data: { headers: string[]; rows: string[][] } }>) {
+  const headers = data.headers.map((header) => <th key={header}>{header}</th>);
+  const rows = data.rows.map((row) => {
+    const rowKey = row.join('|');
+    return (
+      <tr key={rowKey}>
+        {row.map((cell) => (
+          <td key={`${rowKey}-${cell}`}>{cell}</td>
+        ))}
+      </tr>
+    );
+  });
 
   return (
     <table>
@@ -24,8 +27,10 @@ function Table({ data }: { data: { headers: string[]; rows: string[][] } }) {
   );
 }
 
-function CustomLink(props: any) {
-  const href = props.href;
+function CustomLink(
+  props: Readonly<React.AnchorHTMLAttributes<HTMLAnchorElement>>
+) {
+  const href = props.href ?? '';
 
   if (href.startsWith('/')) {
     return (
@@ -36,14 +41,20 @@ function CustomLink(props: any) {
   }
 
   if (href.startsWith('#')) {
-    return <a {...props} />;
+    return <a {...props}>{props.children ?? href}</a>;
   }
 
-  return <a rel="noopener noreferrer" target="_blank" {...props} />;
+  return (
+    <a rel="noopener noreferrer" target="_blank" {...props}>
+      {props.children ?? href}
+    </a>
+  );
 }
 
-function RoundedImage(props: any) {
-  return <Image alt={props.alt} className="rounded-lg" {...props} />;
+import type { ImageProps } from 'next/image';
+
+function RoundedImage(props: ImageProps) {
+  return <Image className="rounded-lg" {...props} />;
 }
 
 // This replaces rehype-slug

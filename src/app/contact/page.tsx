@@ -76,6 +76,8 @@ export default function ContactPage() {
                     stroke="currentColor"
                     viewBox="0 0 24 24"
                   >
+                    <title>Download CV icon</title>
+
                     <path
                       d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
                       strokeLinecap="round"
@@ -96,6 +98,7 @@ export default function ContactPage() {
                   stroke="currentColor"
                   viewBox="0 0 24 24"
                 >
+                  <title>Link to website</title>
                   <path
                     d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                     strokeLinecap="round"
