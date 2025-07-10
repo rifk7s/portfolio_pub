@@ -91,20 +91,4 @@ Edit `src/data/resume.tsx` to update your personal information, experience, and 
 ### Modifying Components
 All UI components are in `src/components/`. You can customize them to match your design preferences.
 
-## Notes and Warnings
-
-> [!NOTE]
-> This portfolio is built with Next.js 15, React 19, TypeScript, Tailwind CSS, and includes Shadcn UI components.
-
-> [!TIP]
-> Use the dark/light theme toggle in the navigation to switch between themes.
-
-> [!IMPORTANT]
-> Run `pnpm install` after cloning to install all dependencies before starting development.
-
-> [!WARNING]
-> Modifying files in the `src/app/` directory will change the routing structure of your portfolio.
-
-> [!CAUTION]
-> Deleting files in `public/` or `content/` directories cannot be undone and may break your portfolio.
 
