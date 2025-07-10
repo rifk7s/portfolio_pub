@@ -56,7 +56,7 @@ export async function getPost(slug: string) {
   };
 }
 
-async function getAllPosts(dir: string): Promise<Post[]> {
+function getAllPosts(dir: string): Promise<Post[]> {
   const mdxFiles = getMDXFiles(dir);
   return Promise.all(
     mdxFiles.map(async (file) => {
@@ -72,5 +72,5 @@ async function getAllPosts(dir: string): Promise<Post[]> {
 }
 
 export async function getBlogPosts() {
-  return getAllPosts(path.join(process.cwd(), 'content'));
+  return await getAllPosts(path.join(process.cwd(), 'content'));
 }

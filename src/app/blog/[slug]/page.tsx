@@ -105,10 +105,9 @@ export default async function Blog({
       <section>
         <div className="mx-auto w-full max-w-4xl">
           <BlurFade delay={BLUR_FADE_DELAY * 2}>
-            <article
-              className="prose dark:prose-invert max-w-none"
-              dangerouslySetInnerHTML={{ __html: post.source }}
-            />
+            <article className="prose dark:prose-invert max-w-none">
+              <div dangerouslySetInnerHTML={{ __html: post.source }} />
+            </article>
           </BlurFade>
         </div>
       </section>
