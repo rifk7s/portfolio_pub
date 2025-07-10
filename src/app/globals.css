@@ -139,9 +139,6 @@ code[data-line-numbers-max-digits="3"] > [data-line]::before {
   width: 3rem;
 }
 
-/* Custom enhancements for dark theme */
-
-
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;

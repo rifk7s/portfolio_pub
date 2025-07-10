@@ -11,7 +11,7 @@ interface BlurFadeTextProps {
     hidden: { y: number };
     visible: { y: number };
   };
-  duration?: number;
+  // duration?: number;
   characterDelay?: number;
   delay?: number;
   yOffset?: number;
@@ -43,7 +43,7 @@ const BlurFadeText = ({
               className={cn('inline-block', className)}
               exit="hidden"
               initial="hidden"
-              key={i}
+              key={`${char}-${i}-${Math.random().toString(36).slice(2, 11)}`}
               style={{ width: char.trim() === '' ? '0.2em' : 'auto' }}
               transition={{
                 delay: delay + i * characterDelay,

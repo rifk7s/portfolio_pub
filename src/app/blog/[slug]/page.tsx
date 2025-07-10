@@ -1,3 +1,6 @@
+import createDOMPurify from 'dompurify';
+import parse from 'html-react-parser'; // Use html-react-parser
+import { JSDOM } from 'jsdom';
 import { ChevronLeftIcon } from 'lucide-react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
@@ -9,6 +12,10 @@ import { DATA } from '@/data/resume';
 import { formatDate } from '@/lib/utils';
 
 const BLUR_FADE_DELAY = 0.04;
+
+// Create a DOMPurify instance using jsdom for server-side rendering
+const window = new JSDOM('').window;
+const DOMPurify = createDOMPurify(window);
 
 export async function generateStaticParams() {
   const posts = await getBlogPosts();
@@ -73,6 +80,8 @@ export default async function Blog({
     notFound();
   }
 
+  const sanitizedContent = DOMPurify.sanitize(post.source);
+
   return (
     <main className="flex min-h-[100dvh] flex-col space-y-10">
       <section>
@@ -106,34 +115,31 @@ export default async function Blog({
         <div className="mx-auto w-full max-w-4xl">
           <BlurFade delay={BLUR_FADE_DELAY * 2}>
             <article className="prose dark:prose-invert max-w-none">
-              <div dangerouslySetInnerHTML={{ __html: post.source }} />
+              {/* Render sanitizedContent as React elements */}
+              {parse(sanitizedContent)}
             </article>
           </BlurFade>
         </div>
       </section>
 
-      <script
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'BlogPosting',
-            headline: post.metadata.title,
-            datePublished: post.metadata.publishedAt,
-            dateModified: post.metadata.publishedAt,
-            description: post.metadata.summary,
-            image: post.metadata.image
-              ? `${DATA.url}${post.metadata.image}`
-              : `${DATA.url}/og?title=${post.metadata.title}`,
-            url: `${DATA.url}/blog/${post.slug}`,
-            author: {
-              '@type': 'Person',
-              name: DATA.name,
-            },
-          }),
-        }}
-        suppressHydrationWarning
-        type="application/ld+json"
-      />
+      <script suppressHydrationWarning type="application/ld+json">{`
+        ${JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'BlogPosting',
+          headline: post.metadata.title,
+          datePublished: post.metadata.publishedAt,
+          dateModified: post.metadata.publishedAt,
+          description: post.metadata.summary,
+          image: post.metadata.image
+            ? `${DATA.url}${post.metadata.image}`
+            : `${DATA.url}/og?title=${post.metadata.title}`,
+          url: `${DATA.url}/blog/${post.slug}`,
+          author: {
+            '@type': 'Person',
+            name: DATA.name,
+          },
+        })}
+      `}</script>
     </main>
   );
 }

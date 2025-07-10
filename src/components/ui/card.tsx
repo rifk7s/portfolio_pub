@@ -1,20 +1,18 @@
-import * as React from 'react';
-
+import { forwardRef } from 'react';
 import { cn } from '@/lib/utils';
 
-const Card = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div
-    className={cn('rounded-lg bg-card text-card-foreground', className)}
-    ref={ref}
-    {...props}
-  />
-));
+const Card = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+  ({ className, ...props }, ref) => (
+    <div
+      className={cn('rounded-lg bg-card text-card-foreground', className)}
+      ref={ref}
+      {...props}
+    />
+  )
+);
 Card.displayName = 'Card';
 
-const CardHeader = React.forwardRef<
+const CardHeader = forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
@@ -22,7 +20,7 @@ const CardHeader = React.forwardRef<
 ));
 CardHeader.displayName = 'CardHeader';
 
-const CardTitle = React.forwardRef<
+const CardTitle = forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLHeadingElement>
 >(({ className, ...props }, ref) => (
@@ -33,11 +31,13 @@ const CardTitle = React.forwardRef<
     )}
     ref={ref}
     {...props}
-  />
+  >
+    {props.children || 'Default Heading'}
+  </h3>
 ));
 CardTitle.displayName = 'CardTitle';
 
-const CardDescription = React.forwardRef<
+const CardDescription = forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLParagraphElement>
 >(({ className, ...props }, ref) => (
@@ -49,7 +49,7 @@ const CardDescription = React.forwardRef<
 ));
 CardDescription.displayName = 'CardDescription';
 
-const CardContent = React.forwardRef<
+const CardContent = forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
@@ -64,7 +64,7 @@ const CardContent = React.forwardRef<
 ));
 CardContent.displayName = 'CardContent';
 
-const CardFooter = React.forwardRef<
+const CardFooter = forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (

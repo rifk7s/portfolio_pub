@@ -22,7 +22,7 @@ export function HackathonCard({
   location,
   image,
   links,
-}: Props) {
+}: Readonly<Props>) {
   return (
     <li className="relative ml-10 py-4">
       <div className="-left-16 absolute top-2 flex items-center justify-center rounded-full bg-white">
@@ -47,9 +47,9 @@ export function HackathonCard({
       </div>
       {links && links.length > 0 && (
         <div className="mt-2 flex flex-row flex-wrap items-start gap-2">
-          {links?.map((link, idx) => (
-            <Link href={link.href} key={idx}>
-              <Badge className="flex gap-2" key={idx} title={link.title}>
+          {links?.map((link) => (
+            <Link href={link.href} key={link.href}>
+              <Badge className="flex gap-2" title={link.title}>
                 {link.icon}
                 {link.title}
               </Badge>
