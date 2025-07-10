@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "npx ultracite@latest lint",
+    "format": "npx ultracite@latest format"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.6",
@@ -15,7 +16,6 @@
     "@radix-ui/react-slot": "^1.2.0",
     "@radix-ui/react-tooltip": "^1.2.3",
     "@types/mdx": "^2.0.13",
-    
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^11.18.2",
@@ -39,14 +39,15 @@
     "unified": "^11.0.5"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.0.6",
     "@tailwindcss/typography": "^0.5.16",
     "@types/node": "^20.17.30",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
-    "eslint": "^8.57.1",
-    "eslint-config-next": "15.3.5",
+    "husky": "^9.1.7",
     "postcss": "^8.5.3",
     "tailwindcss": "^3.4.17",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "ultracite": "5.0.32"
   }
 }
