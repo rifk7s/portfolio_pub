@@ -12,7 +12,7 @@ interface BlogCardProps {
   className?: string;
 }
 
-export function BlogCard({ post, className }: BlogCardProps) {
+export function BlogCard({ post, className }: Readonly<BlogCardProps>) {
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {

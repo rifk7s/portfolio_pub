@@ -1,3 +1,5 @@
+/* biome-ignore lint/security/noDangerouslySetInnerHtml: This is a valid use case. */
+
 @import "tailwindcss";
 
 @custom-variant dark (&:is(.dark *));

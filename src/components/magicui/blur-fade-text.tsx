@@ -30,7 +30,7 @@ const BlurFadeText = ({
     hidden: { y: yOffset, opacity: 0, filter: 'blur(8px)' },
     visible: { y: -yOffset, opacity: 1, filter: 'blur(0px)' },
   };
-  const combinedVariants = variant || defaultVariants;
+  const combinedVariants = variant ?? defaultVariants;
   const characters = useMemo(() => Array.from(text), [text]);
 
   if (animateByCharacter) {
@@ -43,7 +43,7 @@ const BlurFadeText = ({
               className={cn('inline-block', className)}
               exit="hidden"
               initial="hidden"
-              key={`${char}-${i}-${Math.random().toString(36).slice(2, 11)}`}
+              key={`${char}-${text}-${i}-${text.charCodeAt(i)}`}
               style={{ width: char.trim() === '' ? '0.2em' : 'auto' }}
               transition={{
                 delay: delay + i * characterDelay,
