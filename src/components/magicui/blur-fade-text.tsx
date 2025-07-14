@@ -31,22 +31,30 @@ const BlurFadeText = ({
     visible: { y: -yOffset, opacity: 1, filter: 'blur(0px)' },
   };
   const combinedVariants = variant ?? defaultVariants;
-  const characters = useMemo(() => Array.from(text), [text]);
+  const characters = useMemo(
+    () =>
+      Array.from(text).map((char, i) => ({
+        id: `${char}-${i}-${text.charCodeAt(i)}`,
+        char,
+        position: i,
+      })),
+    [text]
+  );
 
   if (animateByCharacter) {
     return (
       <div className="flex">
         <AnimatePresence>
-          {characters.map((char, i) => (
+          {characters.map(({ id, char, position }) => (
             <motion.span
               animate="visible"
               className={cn('inline-block', className)}
               exit="hidden"
               initial="hidden"
-              key={`${char}-${text}-${i}-${text.charCodeAt(i)}`}
+              key={id}
               style={{ width: char.trim() === '' ? '0.2em' : 'auto' }}
               transition={{
-                delay: delay + i * characterDelay,
+                delay: delay + position * characterDelay,
                 ease: 'easeOut',
               }}
               variants={combinedVariants}
