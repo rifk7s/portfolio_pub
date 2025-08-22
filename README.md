@@ -9,7 +9,7 @@
 
 # Portfolio (Public Version)
 
->This is the public version of my portfolio website, based on the old version of my private portfolio at [https://rifk7s.vercel.app](https://rifk7s.vercel.app). Anyone is welcome to fork and use this as a starting point for their own site.
+>This is the public version of my portfolio website, based on the old version of my private portfolio at [https://rifky.dev](https://rifky.dev). Anyone is welcome to fork and use this as a starting point for their own site.
 
 
 ## Tech Stack
